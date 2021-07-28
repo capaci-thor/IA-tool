@@ -1,0 +1,36 @@
+#:kivy 1.9.2
+<RelativeLL>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgb: 1, 1, 1
+            Rectangle:
+                size: self.size
+        orientation: 'horizontal'
+
+        BoxLayout:
+            orientation:"vertical"
+            size_hint: .2, .3
+            pos_hint:{"right":1,"top":1}
+
+            Button:
+                text: "Apriori"
+                background_color: (0.5, 0.5, 0.0, 0.5)                
+                
+            Button:
+                text:"Similarity metrics"
+                background_color: (0.5, 0.5, 0.0, 0.5)
+                
+
+            Button:
+                text:"Clustering"
+                background_color: (0.5, 0.5, 0.0, 0.5)
+                
+                
+        BoxLayout:
+            orientation:"vertical"
+
+            Label:
+                id:textoLabel
+                text: "Contenido"
+                color: 0,0,0
