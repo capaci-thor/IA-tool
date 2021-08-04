@@ -20,13 +20,14 @@
             Button:
                 text:"Similarity metrics"
                 background_color: (0.5, 0.5, 0.0, 0.5)
+                on_press: root.menuMetrics()
                 
 
             Button:
                 text:"Clustering"
                 background_color: (0.5, 0.5, 0.0, 0.5)
-                
-                
+                on_press: root.menuClustering()
+                      
         BoxLayout:
             orientation:"vertical"
 
@@ -34,3 +35,43 @@
                 id:textoLabel
                 text: "Contenido"
                 color: 0,0,0
+
+
+<BtnMetrics>:
+    orientation:"vertical"
+    size_hint: .2, .3
+    pos_hint:{"right":1,"top":1}
+    Button:
+        text: "Euclidean"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.Euclidean()
+
+    Button:
+        text: "Chebyshev"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.Chebyshev()
+
+    Button:
+        text: "Manhattan"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.Manhattan()
+
+    Button:
+        text: "Minkowsky"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.Minkowsky()
+
+
+<BtnClu>:
+    orientation:"vertical"
+    size_hint: .2, .3
+    pos_hint:{"right":1,"top":1}
+    Button:
+        text: "Jerarquico"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.jer()
+
+    Button:
+        text: "K-means"
+        background_color: (0.5, 0.5, 0.0, 0.5)
+        on_press: app.root.kmeans()
