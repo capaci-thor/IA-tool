@@ -24,7 +24,7 @@ some algorithms are:
  ```bash
  pip install Kivy==2.0.0
 
- # 1) Apriori algorithm
+# 1) Apriori algorithm
  Especialmente para este algoritmo se utilizaran las bibliotecas
 
  -  apyori
@@ -33,21 +33,22 @@ some algorithms are:
  -  matplotlib
  
  Para la biblioteca apyori 
- ```bash
- pip install apyori```
+  ```bash
+    pip install apyori
 
-Para la biblioteca pandas 
- ```bash
- pip install pandas```
 
-  Para la biblioteca numpy
-    *Esta biliotecas se puede omitir pues en la instalación de pandas, se instala
- ```bash
- pip install numpy```
+ Para la biblioteca pandas 
+  ```bash
+    pip install pandas
 
-  Para la biblioteca matplotlib 
- ```bash
- pip install matplotlib```
+ Para la biblioteca numpy
+  *Esta biliotecas se puede omitir pues en la instalación de pandas, se instala
+  ```bash
+    pip install numpy
+
+ Para la biblioteca matplotlib 
+  ```bash
+    pip install matplotlib
 
 
 
