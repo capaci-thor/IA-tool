@@ -1,5 +1,3 @@
-from enum import Flag
-from sys import flags
 import kivy
 from kivy import app
 from kivy.app import App
@@ -9,11 +7,15 @@ from kivy.uix.label import Label
 from kivy.core.window import Window
 from kivy.lang.builder import Builder
 from kivy.uix.widget import Widget
+from kivy.uix.popup import Popup
+
 
 
 
 kivy.require("1.9.2")
-Builder.load_file('kv/Main.kv')
+Builder.load_file('kv\Main.kv')
+Builder.load_file('kv\Apriory.kv')
+
 
 class RelativeLL(BoxLayout):
 
@@ -21,7 +23,9 @@ class RelativeLL(BoxLayout):
         super(RelativeLL, self).__init__()
         self.BtnMe = BtnMetrics()
         self.BtnC = BtnClu()
-        self.flag = False
+        self.flag = False #bandera para mostroar u ocultar menu
+        #BoxLayout algoritmo apriory
+        self.BLApriory = AprioryBox()
 
     #Metodo onClick del boton metricas de similitud
     def menuMetrics(self):
@@ -69,12 +73,25 @@ class RelativeLL(BoxLayout):
         self.flag = False
         self.remove_widget(self.BtnC)
 
+    def apriori(self):
+        #elimina si ya hay una existente
+        self.ids.blApriory.remove_widget(self.BLApriory)
+
+        from py import Apriory
+        self.ids.blApriory.add_widget(self.BLApriory)
+
+        
+
 
 class BtnMetrics(BoxLayout):
     None
 
 class BtnClu(BoxLayout):
     None
+
+class AprioryBox(BoxLayout):
+    None
+
 
 class MyApp(App):
     title = "IA Tool"

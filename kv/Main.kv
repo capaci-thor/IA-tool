@@ -15,7 +15,8 @@
 
             Button:
                 text: "Apriori"
-                background_color: (0.5, 0.5, 0.0, 0.5)                
+                background_color: (0.5, 0.5, 0.0, 0.5)
+                on_press: root.apriori()                               
                 
             Button:
                 text:"Similarity metrics"
@@ -30,11 +31,7 @@
                       
         BoxLayout:
             orientation:"vertical"
-
-            Label:
-                id:textoLabel
-                text: "Contenido"
-                color: 0,0,0
+            id: blApriory
 
 
 <BtnMetrics>:
