@@ -13,7 +13,7 @@ from kivy.uix.widget import Widget
 
 
 kivy.require("1.9.2")
-Builder.load_file('Main.kv')
+Builder.load_file('kv/Main.kv')
 
 class RelativeLL(BoxLayout):
 
