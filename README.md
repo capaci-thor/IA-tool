@@ -74,4 +74,8 @@ garden install graph
 
 # 2) Metricas de similitud
 
+Se necesita instalar el paquete scipy, se hazo uso del paquete pip
+  ```bash
+    pip install scipy
+  ```
 
