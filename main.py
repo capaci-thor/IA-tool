@@ -21,6 +21,9 @@ kivy.require("1.9.2")
 Builder.load_file('kv\Main.kv')
 Builder.load_file('kv\Apriory.kv')
 Builder.load_file('kv\euclidean.kv')
+Builder.load_file('kv\chebyshev.kv')
+Builder.load_file('kv\minkowski.kv')
+Builder.load_file('kv\manhattan.kv')
 
 
 def Datos(path):
@@ -36,7 +39,11 @@ class RelativeLL(BoxLayout):
         self.flag = False #bandera para mostroar u ocultar menu
         #BoxLayout algoritmo apriory
         self.BLApriory = AprioryBox()
+        #BoxLayout algoritmos metricas
         self.BLEuclidean = EuclideanBox()
+        self.BLChebyshev = ChebyshevBox()
+        self.BLMinkowski = MinkowskiBox()
+        self.BLManhattan = ManhattanBox()
         self.direccion = ""
     
 
@@ -68,25 +75,77 @@ class RelativeLL(BoxLayout):
         try:
             self.ids.blApriory.remove_widget(self.BLApriory)
             self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
         except:
             None
         self.ids.blApriory.add_widget(self.BLEuclidean)
-        
-
-    def aplicarEuclidean(self):
-        from py import euclidean
 
     def Chebyshev(self):
         self.flag = False
         self.remove_widget(self.BtnMe)
+        try:
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
+        except:
+            None
+        self.ids.blApriory.add_widget(self.BLChebyshev)
+
 
     def Manhattan(self):
         self.flag = False
         self.remove_widget(self.BtnMe)
+        try:
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
+        except:
+            None
+        self.ids.blApriory.add_widget(self.BLManhattan)
+
 
     def Minkowsky(self):
         self.flag = False
         self.remove_widget(self.BtnMe)
+        try:
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
+        except:
+            None
+        self.ids.blApriory.add_widget(self.BLMinkowski)
+
+    def aplicarEuclidean(self):
+        from py import euclidean
+
+        eu = euclidean.euclidean(self.direccion)
+        print(eu)
+
+    def aplicarChebyshev(self):
+        from py import chebyshev
+
+        eu = chebyshev.chebyshev(self.direccion)
+        print(eu)
+
+    def aplicarManhattan(self):
+        from py import manhattan
+
+        eu = manhattan.manhattan(self.direccion)
+        print(eu)
+
+    def aplicarMinkowski(self):
+        from py import minkowsk
+
+        eu = minkowsk.minkowski(self.direccion)
+        print(eu)
 
     #Metodos para los botones de clustering
     def jer(self):
@@ -109,10 +168,16 @@ class RelativeLL(BoxLayout):
             Datos(self.direccion)
             self.BLApriory.cargaTexto = "Archivo cargado"
             self.BLEuclidean.cargaTexto = "Archivo cargado"
+            self.BLMinkowski.cargaTexto = "Archivo cargado"
+            self.BLChebyshev.cargaTexto = "Archivo cargado"
+            self.BLManhattan.cargaTexto = "Archivo cargado"
 
         else:
             self.BLApriory.cargaTexto = "no se cargó ningun archivo"
             self.BLEuclidean.cargaTexto = "no se cargó ningun archivo"
+            self.BLMinkowski.cargaTexto = "no se cargó ningun archivo"
+            self.BLChebyshev.cargaTexto = "no se cargó ningun archivo"
+            self.BLManhattan.cargaTexto = "no se cargó ningun archivo"
 
 
 
@@ -124,6 +189,9 @@ class RelativeLL(BoxLayout):
         try:
             self.ids.blApriory.remove_widget(self.BLApriory)
             self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
         except:
             None
         self.ids.blApriory.add_widget(self.BLApriory)
@@ -150,8 +218,31 @@ class EuclideanBox(BoxLayout):
     def __init__(self):
         super().__init__()
         self.cargaTexto = ""
-        
-        
+
+class ChebyshevBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+
+class MinkowskiBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+
+class ManhattanBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+ 
     
 class MyApp(App):
     title = "IA Tool"
