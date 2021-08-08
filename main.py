@@ -20,12 +20,12 @@ import pandas as pd       # Para la manipulación de análisis de datos
 kivy.require("1.9.2")
 Builder.load_file('kv\Main.kv')
 Builder.load_file('kv\Apriory.kv')
+Builder.load_file('kv\euclidean.kv')
+
 
 def Datos(path):
     datos = pd.read_csv(path)
     
-
-
 
 class RelativeLL(BoxLayout):
 
@@ -36,6 +36,7 @@ class RelativeLL(BoxLayout):
         self.flag = False #bandera para mostroar u ocultar menu
         #BoxLayout algoritmo apriory
         self.BLApriory = AprioryBox()
+        self.BLEuclidean = EuclideanBox()
         self.direccion = ""
     
 
@@ -64,6 +65,16 @@ class RelativeLL(BoxLayout):
     def Euclidean(self):
         self.flag = False
         self.remove_widget(self.BtnMe)
+        try:
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+        except:
+            None
+        self.ids.blApriory.add_widget(self.BLEuclidean)
+        
+
+    def aplicarEuclidean(self):
+        from py import euclidean
 
     def Chebyshev(self):
         self.flag = False
@@ -97,18 +108,22 @@ class RelativeLL(BoxLayout):
         if(self.direccion != ""):
             Datos(self.direccion)
             self.BLApriory.cargaTexto = "Archivo cargado"
+            self.BLEuclidean.cargaTexto = "Archivo cargado"
 
         else:
             self.BLApriory.cargaTexto = "no se cargó ningun archivo"
+            self.BLEuclidean.cargaTexto = "no se cargó ningun archivo"
 
 
 
 
         ### Algoritmo apriory
+    
     def apriori(self):
         #elimina si ya hay una existente
         try:
             self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
         except:
             None
         self.ids.blApriory.add_widget(self.BLApriory)
@@ -123,6 +138,13 @@ class BtnClu(BoxLayout):
     None
 
 class AprioryBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+class EuclideanBox(BoxLayout):
     cargaTexto = StringProperty()
 
     def __init__(self):
