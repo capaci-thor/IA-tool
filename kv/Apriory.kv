@@ -14,18 +14,59 @@
             id:carga
             text: root.cargaTexto
             color: 1,0,1,1
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.2
         BoxLayout:
             orientation:"horizontal"
+            
+            BoxLayout:
+                orientation:"vertical"
+                size_hint: 0.1, 1
 
-            TextInput:
-                text: "min_support"
-            TextInput:
-                text: "min_confidence"
-            TextInput:
-                text: "min_lift"
+                TextInput:
+                    text: "a"
+                TextInput:
+                    text: "b"
+                TextInput:
+                    text: "c"
 
-            TextInput:
-                text: "min_length"
+                TextInput:
+                    text: "d"
+
+            BoxLayout:
+                orientation:"vertical"
+
+                Label:
+                    text: "min_support"
+                    color: 1,0,1,1
+                Label:
+                    text: "min_confidence"
+                    color: 1,0,1,1
+                Label:
+                    text: "min_lift"
+                    color: 1,0,1,1
+
+                Label:
+                    text: "min_length"
+                    color: 1,0,1,1
+            BoxLayout:
+                orientation:"vertical"
+
+                Label:
+                    text: "min_support"
+                    color: 1,0,1,1
+                Label:
+                    text: "min_confidence"
+                    color: 1,0,1,1
+                Label:
+                    text: "min_lift"
+                    color: 1,0,1,1
+
+                Label:
+                    text: "min_length"
+                    color: 1,0,1,1
+
 
 
         
