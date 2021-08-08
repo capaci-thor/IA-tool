@@ -25,6 +25,22 @@ some algorithms are:
  pip install Kivy==2.0.0
  ```
 
+  ```bash
+ pip install tk
+ ```
+
+  ```bash
+ pip install matplotlib==3.1.3
+ ```
+
+   ```bash
+pip install kivy-garden
+garden install graph
+
+ ```
+
+
+
 # 1) Apriori algorithm
  Especialmente para este algoritmo se utilizaran las bibliotecas
 
@@ -55,5 +71,7 @@ some algorithms are:
     pip install matplotlib
   ```
 
+
+# 2) Metricas de similitud
 
 
