@@ -1,0 +1,23 @@
+#:kivy 1.9.2
+<EuclideanBox>:
+    orientation:"vertical"
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.16
+        pos_hint:{"left":1,"top":1}
+
+        Button:
+            text:"Cargar"
+            on_press: app.root.cargar()
+        Label:
+            id:carga
+            text: root.cargaTexto
+            color: 1,0,1,1
+        Button:
+            text:"Aplicar"
+            on_press: app.root.aplicarEuclidean()
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.9
