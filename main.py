@@ -1,3 +1,4 @@
+from tkinter.constants import END
 import kivy
 from kivy import app
 from kivy.app import App
@@ -10,12 +11,14 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from kivy.uix.textinput import TextInput
 
-
+#from tkinter import *
 import tkinter as tk
 from tkinter import filedialog
 from py import Apriory
 import pandas as pd       # Para la manipulación de análisis de datos
 
+import pickle
+from os import system
 
 kivy.require("1.9.2")
 Builder.load_file('kv\Main.kv')
@@ -126,26 +129,38 @@ class RelativeLL(BoxLayout):
     def aplicarEuclidean(self):
         from py import euclidean
 
-        eu = euclidean.euclidean(self.direccion)
-        print(eu)
+        eu , lista = euclidean.euclidean(self.direccion)
+        #print(eu)
+        #print(lista)
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(lista, f)
+        system("python py/showList.py")
+
 
     def aplicarChebyshev(self):
         from py import chebyshev
 
-        eu = chebyshev.chebyshev(self.direccion)
-        print(eu)
+        ch , lista = chebyshev.chebyshev(self.direccion)
+
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(lista, f)
+        system("python py/showList.py")
 
     def aplicarManhattan(self):
         from py import manhattan
 
-        eu = manhattan.manhattan(self.direccion)
-        print(eu)
+        man, lista = manhattan.manhattan(self.direccion)
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(lista, f)
+        system("python py/showList.py")
 
     def aplicarMinkowski(self):
         from py import minkowsk
 
-        eu = minkowsk.minkowski(self.direccion)
-        print(eu)
+        eu, lista = minkowsk.minkowski(self.direccion)
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(lista, f)
+        system("python py/showList.py")
 
     #Metodos para los botones de clustering
     def jer(self):
@@ -154,10 +169,11 @@ class RelativeLL(BoxLayout):
 
     def kmeans(self):
         self.flag = False
-        self.remove_widget(self.BtnC)
+        try:
+            self.remove_widget(self.BtnC)
+        except:
+            None
 
-    def AplicarApriory(self):
-        Apriory.Datos(self.direccion)
 
     #Metodo para cargar archivo
     def cargar(self):
@@ -196,7 +212,22 @@ class RelativeLL(BoxLayout):
             None
         self.ids.blApriory.add_widget(self.BLApriory)
 
+    def aplicarApriory(self):
+        bandera = False
 
+        from py import Apriory
+        lista, bandera = Apriory.Apriory(self.direccion)
+        for item in lista:
+            Emparejar = item[0]
+            items = [x for x in Emparejar]
+            print("Regla: " + str(item[0]))
+
+
+
+        if(bandera):
+            print("Listo")
+        else:
+            print("cargando")
 
 
 class BtnMetrics(BoxLayout):
@@ -212,12 +243,16 @@ class AprioryBox(BoxLayout):
         super().__init__()
         self.cargaTexto = ""
 
+
+
+
 class EuclideanBox(BoxLayout):
     cargaTexto = StringProperty()
-
+    Lista = StringProperty()
     def __init__(self):
         super().__init__()
         self.cargaTexto = ""
+        self.Lista = ""
 
 class ChebyshevBox(BoxLayout):
     cargaTexto = StringProperty()
