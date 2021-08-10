@@ -78,4 +78,21 @@ Se necesita instalar el paquete scipy, se hazo uso del paquete pip
   ```bash
     pip install scipy
   ```
+# 3) Clustering 
+
+Se necesita instalar el paquete seaborn, se hazo uso del paquete pip
+  ```bash
+  pip install seaborn
+  ```
+pip
+  ```bash
+  pip install scikit-learn
+  ```
+
+    ```bash
+  pip install kneed
+  ```
+
+  
+
 

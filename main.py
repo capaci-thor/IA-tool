@@ -29,6 +29,8 @@ Builder.load_file('kv\euclidean.kv')
 Builder.load_file('kv\chebyshev.kv')
 Builder.load_file('kv\minkowski.kv')
 Builder.load_file('kv\manhattan.kv')
+Builder.load_file('kv\jerarquico.kv')
+Builder.load_file('kv\k-means.kv')
 
 
 def Datos(path):
@@ -42,7 +44,7 @@ class RelativeLL(BoxLayout):
         self.BtnMe = BtnMetrics()
         self.BtnC = BtnClu()
         self.flag = False #bandera para mostroar u ocultar menu
-        #BoxLayout algoritmo apriory
+        #BoxLayout y variables algoritmo apriory
         self.support = ""
         self.confidence = ""
         self.lift = ""
@@ -54,6 +56,9 @@ class RelativeLL(BoxLayout):
         self.BLMinkowski = MinkowskiBox()
         self.minko = ""
         self.BLManhattan = ManhattanBox()
+        #Clustering
+        self.BLJerarquico = JerarquicoBox()
+        self.BLKmeans = KmeansBox()
         self.direccion = ""
     
 
@@ -88,6 +93,8 @@ class RelativeLL(BoxLayout):
             self.ids.blApriory.remove_widget(self.BLChebyshev)
             self.ids.blApriory.remove_widget(self.BLManhattan)
             self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
         self.ids.blApriory.add_widget(self.BLEuclidean)
@@ -101,6 +108,8 @@ class RelativeLL(BoxLayout):
             self.ids.blApriory.remove_widget(self.BLChebyshev)
             self.ids.blApriory.remove_widget(self.BLManhattan)
             self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
         self.ids.blApriory.add_widget(self.BLChebyshev)
@@ -115,6 +124,8 @@ class RelativeLL(BoxLayout):
             self.ids.blApriory.remove_widget(self.BLChebyshev)
             self.ids.blApriory.remove_widget(self.BLManhattan)
             self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
         self.ids.blApriory.add_widget(self.BLManhattan)
@@ -129,6 +140,8 @@ class RelativeLL(BoxLayout):
             self.ids.blApriory.remove_widget(self.BLChebyshev)
             self.ids.blApriory.remove_widget(self.BLManhattan)
             self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
         self.ids.blApriory.add_widget(self.BLMinkowski)
@@ -185,14 +198,46 @@ class RelativeLL(BoxLayout):
     def jer(self):
         self.flag = False
         self.remove_widget(self.BtnC)
-
-    def kmeans(self):
-        self.flag = False
         try:
-            self.remove_widget(self.BtnC)
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
+        self.ids.blApriory.add_widget(self.BLJerarquico)
+        
+    def kmeans(self):
+        self.flag = False
+        self.remove_widget(self.BtnC)
+        try:
+            self.ids.blApriory.remove_widget(self.BLApriory)
+            self.ids.blApriory.remove_widget(self.BLEuclidean)
+            self.ids.blApriory.remove_widget(self.BLChebyshev)
+            self.ids.blApriory.remove_widget(self.BLManhattan)
+            self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
 
+
+        except:
+            None
+        self.ids.blApriory.add_widget(self.BLKmeans)
+      
+    def aplicarJerarquico(self):
+
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(self.direccion, f)
+        system("python py/jerarquico.py")
+        
+        
+    def aplicarParticional(self):
+        with open("py/obj.pickle", "wb") as f:
+            pickle.dump(self.direccion, f)
+        system("python py/kmeans.py")
 
     #Metodo para cargar archivo
     def cargar(self):
@@ -206,6 +251,9 @@ class RelativeLL(BoxLayout):
             self.BLMinkowski.cargaTexto = "Archivo cargado"
             self.BLChebyshev.cargaTexto = "Archivo cargado"
             self.BLManhattan.cargaTexto = "Archivo cargado"
+            self.BLJerarquico.cargaTexto = "Archivo cargado"
+            self.BLKmeans.cargaTexto = "Archivo cargado"
+
 
         else:
             self.BLApriory.cargaTexto = "no se cargó ningun archivo"
@@ -213,6 +261,10 @@ class RelativeLL(BoxLayout):
             self.BLMinkowski.cargaTexto = "no se cargó ningun archivo"
             self.BLChebyshev.cargaTexto = "no se cargó ningun archivo"
             self.BLManhattan.cargaTexto = "no se cargó ningun archivo"
+            self.BLJerarquico.cargaTexto = "no se cargó ningun archivo"
+            self.BLKmeans.cargaTexto = "no se cargó ningun archivo"
+
+
 
 
 
@@ -227,6 +279,8 @@ class RelativeLL(BoxLayout):
             self.ids.blApriory.remove_widget(self.BLChebyshev)
             self.ids.blApriory.remove_widget(self.BLManhattan)
             self.ids.blApriory.remove_widget(self.BLMinkowski)
+            self.ids.blApriory.remove_widget(self.BLKmeans)
+            self.ids.blApriory.remove_widget(self.BLJerarquico)
         except:
             None
         self.ids.blApriory.add_widget(self.BLApriory)
@@ -295,13 +349,14 @@ class RelativeLL(BoxLayout):
 
 
 
-
+#Menus que se muestran y esconden
 class BtnMetrics(BoxLayout):
     None
 
 class BtnClu(BoxLayout):
     None
 
+#vistas principales
 class AprioryBox(BoxLayout):
     cargaTexto = StringProperty()
     cargando = StringProperty()
@@ -319,10 +374,6 @@ class AprioryBox(BoxLayout):
         self.lift = ""
         self.length = ""
        
-
-
-
-
 class EuclideanBox(BoxLayout):
     cargaTexto = StringProperty()
     Lista = StringProperty()
@@ -338,7 +389,6 @@ class ChebyshevBox(BoxLayout):
         super().__init__()
         self.cargaTexto = ""
 
-
 class MinkowskiBox(BoxLayout):
     cargaTexto = StringProperty()
     minko = StringProperty()
@@ -348,8 +398,21 @@ class MinkowskiBox(BoxLayout):
         self.cargaTexto = ""
         self.minko = ""
 
-
 class ManhattanBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+class KmeansBox(BoxLayout):
+    cargaTexto = StringProperty()
+
+    def __init__(self):
+        super().__init__()
+        self.cargaTexto = ""
+
+class JerarquicoBox(BoxLayout):
     cargaTexto = StringProperty()
 
     def __init__(self):
