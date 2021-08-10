@@ -52,6 +52,7 @@ class RelativeLL(BoxLayout):
         self.BLEuclidean = EuclideanBox()
         self.BLChebyshev = ChebyshevBox()
         self.BLMinkowski = MinkowskiBox()
+        self.minko = ""
         self.BLManhattan = ManhattanBox()
         self.direccion = ""
     
@@ -161,12 +162,24 @@ class RelativeLL(BoxLayout):
         system("python py/showList.py")
 
     def aplicarMinkowski(self):
-        from py import minkowsk
+        try:
+            from py import minkowsk
 
-        eu, lista = minkowsk.minkowski(self.direccion)
-        with open("py/obj.pickle", "wb") as f:
-            pickle.dump(lista, f)
-        system("python py/showList.py")
+            eu, lista = minkowsk.minkowski(self.direccion, self.minko)
+            with open("py/obj.pickle", "wb") as f:
+                pickle.dump(lista, f)
+            system("python py/showList.py")
+        except:
+            self.BLMinkowski.minko = "ingrese un numero valido"
+
+    def processMi(self):
+        minko = self.BLMinkowski.ids.TIMinko.text
+        try:
+            self.minko = float(minko)
+            self.BLMinkowski.minko = "OK"
+        except:
+            self.BLMinkowski.minko = "Formato no valio"
+
 
     #Metodos para los botones de clustering
     def jer(self):
@@ -239,8 +252,6 @@ class RelativeLL(BoxLayout):
 
             f.close()
 
-
-
             if(bandera):
                 self.BLApriory.cargando = "Listo"
 
@@ -298,7 +309,7 @@ class AprioryBox(BoxLayout):
     confidence = StringProperty()
     lift = StringProperty()
     length = StringProperty()
-
+    
     def __init__(self):
         super().__init__()
         self.cargaTexto = ""
@@ -307,6 +318,7 @@ class AprioryBox(BoxLayout):
         self.confidence = ""
         self.lift = ""
         self.length = ""
+       
 
 
 
@@ -329,10 +341,12 @@ class ChebyshevBox(BoxLayout):
 
 class MinkowskiBox(BoxLayout):
     cargaTexto = StringProperty()
+    minko = StringProperty()
 
     def __init__(self):
         super().__init__()
         self.cargaTexto = ""
+        self.minko = ""
 
 
 class ManhattanBox(BoxLayout):
@@ -355,6 +369,3 @@ class MyApp(App):
 if __name__ == "__main__":
     app = MyApp()
     app.run()
-
-
-

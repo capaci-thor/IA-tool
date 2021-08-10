@@ -5,7 +5,7 @@ import pandas as pd
 
 def euclidean(path):
     data = pd.read_csv(path)
-    print(data)
+    #print(data)
     Lista = []
     for i in range(0, 15):
         Lista.append([int(data.values[i,j]) 
@@ -21,6 +21,3 @@ def euclidean(path):
     df_euclideano = pd.DataFrame(distancias_euclideana)
 
     return df_euclideano, distancias_euclideana
-
-
-

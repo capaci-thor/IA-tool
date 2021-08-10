@@ -2,9 +2,9 @@ from scipy.spatial import distance
 import pandas as pd
 
 
-def minkowski(path):
+def minkowski(path, x):
     data = pd.read_csv(path)
-    print(data)
+    #print(data)
     Lista = []
     for i in range(0, 15):
         Lista.append([int(data.values[i,j]) 
@@ -15,7 +15,7 @@ def minkowski(path):
     for i in range(0,14):
         a = []
         for j in range(0,14):
-            a.append(distance.minkowski(Lista[i], Lista[j],1.5))
+            a.append(distance.minkowski(Lista[i], Lista[j],x))
         distancias_minkowski.append(a)
     df_minkowski = pd.DataFrame(distancias_minkowski)
     

@@ -4,7 +4,7 @@ import pandas as pd
 
 def chebyshev(path):
     data = pd.read_csv(path)
-    print(data)
+    #print(data)
     Lista = []
     for i in range(0, 15):
         Lista.append([int(data.values[i,j]) 
