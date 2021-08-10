@@ -4,7 +4,7 @@
 
     BoxLayout:
         orientation:"vertical"
-        size_hint: 1, 0.15
+        size_hint: 1, 0.2
         pos_hint:{"left":1,"top":1}
 
         Button:
@@ -16,40 +16,48 @@
             color: 1,0,1,1
     BoxLayout:
         orientation:"vertical"
-        size_hint: 1, 0.2
+        size_hint: 1, 0.3
         BoxLayout:
             orientation:"horizontal"
             
             BoxLayout:
                 orientation:"vertical"
                 size_hint: 0.1, 1
+                
+                TextInput:
+                    id: support
+                    #text: root.support
+                    on_text: app.root.process()
+                TextInput:
+                    id: confidence
+                    on_text: app.root.process()
+                TextInput:
+                    id: lift
+                    #text: "c"
+                    on_text: app.root.process()
 
                 TextInput:
-                    text: "a"
-                TextInput:
-                    text: "b"
-                TextInput:
-                    text: "c"
-
-                TextInput:
-                    text: "d"
+                    id: len
+                    #text: "d"
+                    on_text: app.root.process()
 
             BoxLayout:
                 orientation:"vertical"
 
                 Label:
-                    text: "min_support"
+                    text: root.support
                     color: 1,0,1,1
                 Label:
-                    text: "min_confidence"
+                    text: root.confidence
                     color: 1,0,1,1
                 Label:
-                    text: "min_lift"
+                    text: root.lift
                     color: 1,0,1,1
 
                 Label:
-                    text: "min_length"
+                    text: root.length
                     color: 1,0,1,1
+
             BoxLayout:
                 orientation:"vertical"
 
@@ -69,16 +77,35 @@
 
     BoxLayout:
         orientation:"vertical"
-        size_hint: 1, 0.07
+        size_hint: 1, 0.1
+        pos_hint:{"left":1,"top":1}
         Button:
             text:"Aplicar"
             on_press: app.root.aplicarApriory()
 
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.1
+        pos_hint:{"left":1,"top":1}
+        Label:
+            text: root.cargando
+            color: 1,0,1,1
+
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.2
+        pos_hint:{"left":1,"top":1}
+        Button:
+            text:"Mostrar datos"
+            on_press: app.root.ShowApriory()
+
         
     BoxLayout:
-        id: reglas
         orientation:"vertical"
-        size_hint: 0.9, 1
+        size_hint: 1, 1
+        pos_hint:{"left":1,"top":1}
+
         
 
 
