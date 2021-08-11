@@ -64,7 +64,11 @@ def kmeans(path):
     MParticional = KMeans(n_clusters=kl.elbow , random_state=0).fit(matriz)
     MParticional.predict(matriz)
     data["clusterP"] = MParticional.labels_
-    bx(str(data.groupby(["clusterP"])["clusterP"].count()))
+
+    a = str(data.groupby(["clusterP"])["clusterP"].count())
+    CentroidesP = MParticional.cluster_centers_
+    b = str(pd.DataFrame(CentroidesP.round(4),columns=[data[[i for i in lista ]]]))
+    bx(a+b)
 
     plt.figure(figsize=(10,7))
     plt.scatter(matriz[:,0], matriz[:,1], c=MParticional.labels_ , cmap="rainbow")
