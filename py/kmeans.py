@@ -60,7 +60,6 @@ def kmeans(path):
         SSE.append(km.inertia_)
 
     kl = KneeLocator(range(2,11), SSE, curve = "convex", direction = "decreasing")
-    kl.elbow
 
     MParticional = KMeans(n_clusters=kl.elbow , random_state=0).fit(matriz)
     MParticional.predict(matriz)
@@ -88,5 +87,5 @@ def delcorrelation(dataset, threshold):
     return dataset
 
 
-kmeans("WDBCOriginal.csv")
 
+kmeans(path)

@@ -58,6 +58,7 @@ class RelativeLL(BoxLayout):
         self.BLManhattan = ManhattanBox()
         #Clustering
         self.BLJerarquico = JerarquicoBox()
+        self.clus = ""
         self.BLKmeans = KmeansBox()
         self.direccion = ""
     
@@ -193,6 +194,15 @@ class RelativeLL(BoxLayout):
         except:
             self.BLMinkowski.minko = "Formato no valio"
 
+    def getClusters(self):
+        clus = self.BLJerarquico.ids.TIJer.text
+        print(clus)
+        try:
+            self.clus = int(clus)
+            self.BLJerarquico.jer = "OK"
+        except:
+            self.BLJerarquico.jer = "Formato no valio"
+
 
     #Metodos para los botones de clustering
     def jer(self):
@@ -229,8 +239,11 @@ class RelativeLL(BoxLayout):
       
     def aplicarJerarquico(self):
 
+        x = []
+        x.append(self.direccion)
+        x.append(self.clus)
         with open("py/obj.pickle", "wb") as f:
-            pickle.dump(self.direccion, f)
+            pickle.dump(x, f)
         system("python py/jerarquico.py")
         
         
@@ -293,6 +306,7 @@ class RelativeLL(BoxLayout):
             from py import Apriory
             
             lista, bandera = Apriory.Apriory(self.direccion, self.support, self.confidence, self.lift, self.len)
+            self.BLApriory.numReglas = "Reglas: "+ str(len(lista))
             for item in lista:
                 Emparejar = item[0]
                 items = [x for x in Emparejar]
@@ -364,6 +378,7 @@ class AprioryBox(BoxLayout):
     confidence = StringProperty()
     lift = StringProperty()
     length = StringProperty()
+    numReglas = StringProperty()
     
     def __init__(self):
         super().__init__()
@@ -373,6 +388,7 @@ class AprioryBox(BoxLayout):
         self.confidence = ""
         self.lift = ""
         self.length = ""
+        self.numReglas = ""
        
 class EuclideanBox(BoxLayout):
     cargaTexto = StringProperty()
@@ -414,10 +430,11 @@ class KmeansBox(BoxLayout):
 
 class JerarquicoBox(BoxLayout):
     cargaTexto = StringProperty()
-
+    jer = StringProperty()
     def __init__(self):
         super().__init__()
         self.cargaTexto = ""
+        self.jer = ""
 
  
     

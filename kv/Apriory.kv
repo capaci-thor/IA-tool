@@ -1,4 +1,6 @@
 #:kivy 1.9.2
+#:import utils kivy.utils
+
 <AprioryBox>:
     orientation:"vertical"
 
@@ -10,10 +12,12 @@
         Button:
             text:"Cargar"
             on_press: app.root.cargar()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
         Label:
             id:carga
             text: root.cargaTexto
-            color: 1,0,1,1
+            color: 1,0,0,1
     BoxLayout:
         orientation:"vertical"
         size_hint: 1, 0.3
@@ -22,7 +26,7 @@
             
             BoxLayout:
                 orientation:"vertical"
-                size_hint: 0.1, 1
+                size_hint: 0.13, 1
                 
                 TextInput:
                     id: support
@@ -46,34 +50,34 @@
 
                 Label:
                     text: root.support
-                    color: 1,0,1,1
+                    color: 1,0,0,1
                 Label:
                     text: root.confidence
-                    color: 1,0,1,1
+                    color: 1,0,0,1
                 Label:
                     text: root.lift
-                    color: 1,0,1,1
+                    color: 1,0,0,1
 
                 Label:
                     text: root.length
-                    color: 1,0,1,1
+                    color: 1,0,0,1
 
             BoxLayout:
                 orientation:"vertical"
 
                 Label:
-                    text: "min_support"
-                    color: 1,0,1,1
+                    text: "Soporte minimo que deben tener la reglas"
+                    color: utils.get_color_from_hex("#FF803D")
                 Label:
-                    text: "min_confidence"
-                    color: 1,0,1,1
+                    text: "Canfianza minimo que deben tener la reglas"
+                    color: utils.get_color_from_hex("#FF803D")
                 Label:
-                    text: "min_lift"
-                    color: 1,0,1,1
+                    text: "Elevación minimo que deben tener la reglas"
+                    color: utils.get_color_from_hex("#FF803D")
 
                 Label:
-                    text: "min_length"
-                    color: 1,0,1,1
+                    text: "longitud minimo que deben tener la reglas"
+                    color: utils.get_color_from_hex("#FF803D")
 
     BoxLayout:
         orientation:"vertical"
@@ -82,6 +86,8 @@
         Button:
             text:"Aplicar"
             on_press: app.root.aplicarApriory()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
 
     BoxLayout:
         orientation:"vertical"
@@ -89,6 +95,14 @@
         pos_hint:{"left":1,"top":1}
         Label:
             text: root.cargando
+            color: 1,0,1,1
+
+    BoxLayout:
+        orientation:"vertical"
+        size_hint: 1, 0.1
+        pos_hint:{"left":1,"top":1}
+        Label:
+            text: root.numReglas
             color: 1,0,1,1
 
 
@@ -99,6 +113,8 @@
         Button:
             text:"Mostrar datos"
             on_press: app.root.ShowApriory()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
 
         
     BoxLayout:

@@ -4,18 +4,17 @@ import pandas as pd
 
 def minkowski(path, x):
     data = pd.read_csv(path)
-    #print(data)
     Lista = []
-    for i in range(0, 15):
+    for i in range(0, len(data)):
         Lista.append([int(data.values[i,j]) 
-        for j in range(1, 9)])
+        for j in range(1, len(data.columns))])
 
     distancias_minkowski=[]
 
-    for i in range(0,14):
+    for i in range(0,len(data)):
         a = []
-        for j in range(0,14):
-            a.append(distance.minkowski(Lista[i], Lista[j],x))
+        for j in range(0,len(data)):
+            a.append(distance.minkowski(Lista[i], Lista[j], x))
         distancias_minkowski.append(a)
     df_minkowski = pd.DataFrame(distancias_minkowski)
     

@@ -82,15 +82,15 @@ Se necesita instalar el paquete scipy, se hazo uso del paquete pip
 
 Se necesita instalar el paquete seaborn, se hazo uso del paquete pip
   ```bash
-  pip install seaborn
-  ```
-pip
-  ```bash
-  pip install scikit-learn
+    pip install seaborn
   ```
 
-    ```bash
-  pip install kneed
+  ```bash
+    pip install scikit-learn
+  ```
+
+  ```bash
+    pip install kneed
   ```
 
   

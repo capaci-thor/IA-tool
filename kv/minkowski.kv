@@ -1,4 +1,6 @@
 #:kivy 1.9.2
+#:import utils kivy.utils
+
 <MinkowskiBox>:
     orientation:"vertical"
 
@@ -10,10 +12,12 @@
         Button:
             text:"Cargar"
             on_press: app.root.cargar()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
         Label:
             id:carga
             text: root.cargaTexto
-            color: 1,0,1,1
+            color: 1,0,0,1
 
     BoxLayout:
         orientation:"vertical"
@@ -33,7 +37,7 @@
 
                 Label:
                     text: root.minko
-                    color: 1,0,1,1
+                    color: 1,0,0,1
 
     BoxLayout:
         orientation:"vertical"
@@ -41,6 +45,8 @@
         Button:
             text:"Aplicar"
             on_press: app.root.aplicarMinkowski()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
 
     BoxLayout:
         orientation:"vertical"

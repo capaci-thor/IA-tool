@@ -1,4 +1,5 @@
 from os import path
+from re import X
 import pandas as pd
 import numpy as np
 from pandas.core.frame import DataFrame
@@ -11,7 +12,7 @@ import tkinter as tk
 
 
 with open("py\obj.pickle", "rb") as f:
-    path = pickle.load(f)
+    entrada = pickle.load(f)
 
 
 def bx(text):
@@ -36,25 +37,26 @@ def bx(text):
 
 
 
-def jerarquico(path):
+def jerarquico(args):
+
+    path = args[0]
+    x = int(args[1])
     data = pd.read_csv(path)
     correlacion = data.corr("pearson")
 
     MatrizVariables = delcorrelation(correlacion, 0.78)
     lista = list(MatrizVariables.columns)
-    #print(lista)
     matriz = []
 
     matriz = np.array(data[[i for i in lista ]])
     pd.DataFrame(matriz)
 
     plt.figure(figsize=(10,7))
-    plt.title("pacientes con cancer de mama")
     plt.xlabel("Observaciones")
     plt.ylabel("Distancias")
     Arbol = shc.dendrogram(shc.linkage(matriz, method="complete", metric="euclidean"))
     plt.show()
-    MJerarquico = AgglomerativeClustering(n_clusters = 5, linkage= "complete", affinity = "euclidean")
+    MJerarquico = AgglomerativeClustering(n_clusters = x, linkage= "complete", affinity = "euclidean")
     MJerarquico.fit_predict(matriz)
     data["clusterH"] =  MJerarquico.labels_
     bx(str(data.groupby(["clusterH"])["clusterH"].count()))
@@ -74,4 +76,4 @@ def delcorrelation(dataset, threshold):
 
     return dataset
 
-jerarquico(path)
+jerarquico(entrada)

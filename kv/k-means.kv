@@ -9,14 +9,18 @@
         Button:
             text:"Cargar"
             on_press: app.root.cargar()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
 
         Label:
             id:carga
             text: root.cargaTexto
-            color: 1,0,1,1
+            color: 1,0,0,1
         Button:
             text:"Aplicar"
             on_press: app.root.aplicarParticional()
+            background_color: utils.get_color_from_hex("#FF803D")
+            background_normal: ''
         
 
     BoxLayout:
