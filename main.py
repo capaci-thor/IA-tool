@@ -11,7 +11,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty
 from kivy.uix.textinput import TextInput
 
-#from tkinter import *
+
 import tkinter as tk
 from tkinter import filedialog
 
@@ -151,8 +151,6 @@ class RelativeLL(BoxLayout):
         from py import euclidean
 
         eu , lista = euclidean.euclidean(self.direccion)
-        #print(eu)
-        #print(lista)
         with open("py/obj.pickle", "wb") as f:
             pickle.dump(lista, f)
         system("python py/showList.py")
@@ -361,8 +359,6 @@ class RelativeLL(BoxLayout):
             self.BLApriory.length = "Formato no valio"
         
 
-
-
 #Menus que se muestran y esconden
 class BtnMetrics(BoxLayout):
     None
@@ -435,8 +431,6 @@ class JerarquicoBox(BoxLayout):
         super().__init__()
         self.cargaTexto = ""
         self.jer = ""
-
- 
     
 class MyApp(App):
     title = "IA Tool"
