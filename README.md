@@ -1,6 +1,17 @@
 # Tool-IA
 This is a repository for artificial intelligence class final project
 
+## Menu of apriori algorithm
+![Main menu](https://github.com/capaci-thor/IA-tool/blob/main/images/apriori.png)
+
+## Menu of similarity metrics
+![Menu similarity metrics](https://github.com/capaci-thor/IA-tool/blob/main/images/menu.png)
+
+## Menu of clustering
+![Menu clustering](https://github.com/capaci-thor/IA-tool/blob/main/images/cluster.png)
+
+
+## About this repo
 This was writed with Python version 3.8.8
 
 This project will contain different algorithms used in artificial intelligence.
